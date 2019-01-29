@@ -4,12 +4,18 @@ body {
     font-family: sans-serif;
   }
 
-  * {box-sizing: border-box;}
-ul {list-style-type: none;}
-body {font-family: Verdana, sans-serif;}
+* {
+    box-sizing: border-box;
+  }
+ul {
+  list-style-type: none;
+}
+body {
+  font-family: Verdana, sans-serif;
+}
 
 .month {
-  padding: 70px 25px;
+  padding: 14px 32px;
   width: 100%;
   background: #1abc9c;
   text-align: center;
@@ -39,9 +45,10 @@ body {font-family: Verdana, sans-serif;}
 }
 
 .days {
-  padding: 10px 0;
   background: #eee;
-  margin: 0;
+  width: 73%;
+  margin-left: 11%;
+  position: absolute
 }
 
 .days li {
@@ -59,20 +66,6 @@ body {font-family: Verdana, sans-serif;}
   background: #1abc9c;
   color: white !important
 }
-
-/* Add media queries for smaller screens */
-@media screen and (max-width:720px) {
-  .weekdays li, .days li {width: 13.1%;}
-}
-
-@media screen and (max-width: 420px) {
-  .weekdays li, .days li {width: 12.5%;}
-  .days li .active {padding: 2px;}
-}
-
-@media screen and (max-width: 290px) {
-  .weekdays li, .days li {width: 12.2%;}
-}
 .container {
     margin-left: 100px;
     margin-right: 100px;
@@ -83,15 +76,13 @@ body {font-family: Verdana, sans-serif;}
 }
 
 .btn-group button {
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
+    background-color: #4CAF50; 
+    border: 1px solid green;
+    color: white;
+    padding: 10px 24px;
+    cursor: pointer; 
   }
-  
-  /* Clear floats (clearfix hack) */
+
   .btn-group:after {
     content: "";
     clear: both;
@@ -99,10 +90,9 @@ body {font-family: Verdana, sans-serif;}
   }
   
   .btn-group button:not(:last-child) {
-    border-right: none; /* Prevent double borders */
+    border-right: none; 
   }
-  
-  /* Add a background color on hover */
+
   .btn-group button:hover {
     background-color: #3e8e41;
   }
@@ -112,31 +102,20 @@ body {font-family: Verdana, sans-serif;}
     width: 25%;
     padding: 0 10px;
   }
-  
-  /* Remove extra left and right margins, due to padding */
+
   .row {
       margin: 0 -5px;
     }
   .row-background-color {
       background-color: tan;
     }
-  /* Clear floats after the columns */
+  
   .row:after {
     content: "";
     display: table;
     clear: both;
   }
   
-  /* Responsive columns */
-  @media screen and (max-width: 600px) {
-    .column {
-      width: 100%;
-      display: block;
-      margin-bottom: 20px;
-    }
-  }
-  
-  /* Style the counter cards */
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
@@ -163,7 +142,10 @@ body {font-family: Verdana, sans-serif;}
   }
   .table-column-right {
     float: right;
-    /* width: 50%; */
     padding: 0 10px;
   }
-  
+  .main-div {
+    border:solid 1px #d0c9c9;
+    position:relative;
+    height: 40px;
+  }

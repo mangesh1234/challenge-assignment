@@ -1,189 +1,30 @@
 [
     {
         "date": "17 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"ADD task",
-                "startTime":"9:00 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"Done task",
-                "startTime":"3 AM",
-                "endTime":"5 AM"
-            }
-        ]
-    },
-    {
-        "date": "18 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"Second task",
-                "startTime":"10:45 AM",
-                "endTime":"11:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"ee task",
-                "startTime":"1:00 AM",
-                "endTime":"3:00 AM"
-            }
-        ]
-    },
-    {
-        "date": "19 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"third task",
-                "startTime":"6:30 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"Done3 task",
-                "startTime":"6:50 PM",
-                "endTime":"7 PM"
-            }
-        ]
-    },
-    {
-        "date": "20 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"third task",
-                "startTime":"6:30 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"Done3 task",
-                "startTime":"6:50 PM",
-                "endTime":"7 PM"
-            }
-        ]
-    },
-    {
-        "date": "21 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"agenda 1",
-                "startTime":"6:30 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"agenda 2",
-                "startTime":"6:00 PM",
-                "endTime":"7 PM"
-            }
-        ]
-    },
-    {
-        "date": "22 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"testing",
-                "startTime":"6:30 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"coding",
-                "startTime":"4:00 PM",
-                "endTime":"7 PM"
-            }
-        ]
-    },
-    {
-        "date": "23 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"development",
-                "startTime":"6:30 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"production",
-                "startTime":"6:50 PM",
-                "endTime":"7 PM"
-            }
-        ]
-    },
-    {
-        "date": "24 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"in process",
-                "startTime":"6:30 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"done",
-                "startTime":"6:50 PM",
-                "endTime":"7 PM"
-            }
-        ]
-    },
-    {
-        "date": "25 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"debbuging",
-                "startTime":"6:30 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"Done3 task",
-                "startTime":"6:50 PM",
-                "endTime":"7 PM"
-            }
-        ]
-    },
-    {
-        "date": "21 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"third task",
-                "startTime":"6:30 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"Done3 task",
-                "startTime":"6:50 PM",
-                "endTime":"7 PM"
-            }
-        ]
-    },
-    {
-        "date": "21 Jan 2019",
-        "events": [
-            {
-                "id":"1",
-                "title":"third task",
-                "startTime":"6:30 AM",
-                "endTime":"10:00 AM"
-            },
-            {
-                "id":"2",
-                "title":"Done3 task",
-                "startTime":"6:50 PM",
-                "endTime":"7 PM"
-            }
-        ]
-    }
+        "id":"1",
+        "title":"ADD task",
+        "startTime":"09:00 AM",
+        "endTime":"10:00 AM"
+    },       
+   {
+    "date": "25 Jan 2019",
+    "id":"2",
+    "title":"update task",
+    "startTime":"09:00 AM",
+    "endTime":"10:00 AM"
+   },
+   {
+    "date": "24 Jan 2019",
+    "id":"3",
+    "title":"delete task",
+    "startTime":"08:00 AM",
+    "endTime":"10:00 AM"
+   },
+   {
+    "date": "23 Jan 2019",
+    "id":"4",
+    "title":"remove task",
+    "startTime":"11:00 AM",
+    "endTime":"12:00 AM"
+   }
 ]

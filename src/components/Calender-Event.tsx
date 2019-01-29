@@ -1,93 +1,93 @@
 import * as React from 'react';
 import * as moment from 'moment';
-import agendaJson = require('../calender-data.json');
-import timeJson = require('../timeSlot.json');
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import {edit, remove} from '../actions/EventAction'
+import { edit, remove } from '../actions/EventAction';
+import { Link } from 'react-router-dom';
+import timeSlot = require('../timeSlot.json');
 
 interface IProps {
-	currentDate:any,
-	edit ? (event:any):any
-    remove ? (event:any):any
-    event:any
+    currentDate: any,
+    edit?(event: any): any
+    remove?(event: any): any
+    event: any
 }
 
-  class CalenderEvent extends React.Component<IProps> {
+class CalenderEvent extends React.Component<IProps, any> {
     constructor(props: any) {
         super(props)
+        this.state = { timeSlot: timeSlot }
     }
 
-    renderTime = () => {
-        
-        return (timeJson || []).map((item: any, index: number) => {
+    timeSlot = () => {
+        return this.state.timeSlot.map((time: any) => {
             return (
-                <tr key={index}>
-                    <td className="width20">{item}</td>
-                    <td className="width60"></td>
-                </tr>
-            );
-        });
+                <div className="main-div">
+                    <span>{time}</span>
+                </div>
+            )
+        })
     }
     renderEvents = () => {
+
         let currentDate = moment(this.props.currentDate).format("DD MMM YYYY");
-        
-        // console.log("eventsJson==", this.props.events)
-        let eventsList = (agendaJson || []).filter((items:any) => currentDate == items.date);
-        return (eventsList[0].events || []).map((item: any, index: number) => {
-           
+        let eventsList = (this.props.event || []).filter((items: any) => currentDate == items.date);
+
+        return (eventsList || []).map((item: any) => {
+            let startTime = item.startTime.split(':');
+            let endTime = item.endTime.split(':');
+            let top = (parseInt(startTime[0]) - 1) * (40) + 170;
+            let height = ((parseInt(endTime[0]) - parseInt(startTime[0])) + 1) * 40;
+            let styleValue = {
+                "top": top,
+                "height": height,
+            }
             return (
-                <div className="days">
-                    <table>
-                        <tr>
-                            <th>test</th>
-                            <td className="empty row-background-color">
-    
-                                <div className="row">
-                                    <div className="table-column-left">
-                                        <span>{item.title}</span>
-                                    </div>
-    
-                                    <div className="table-column-right">
-    
-                                        <div className="btn-group">
-                                            <button onClick = {this.props.edit} data-val={this.props.currentDate}>edit</button>
-                                            <button onClick = {this.props.remove} data-val={this.props.currentDate}>delete</button>
-                                        </div>
-                                    </div>
-    
+                <table className="days" style={styleValue}>
+                    <tr>
+                        <td className="empty row-background-color">
+                            <div className="row">
+                                <div className="table-column-left">
+                                    <span>{item.title}</span>
                                 </div>
-    
-                                <div className="row">
-                                    <div className="column">
-                                    {item.startTime} -- {item.endTime}
+                                <div className="table-column-right">
+                                    <div className="btn-group">
+                                        <Link to={{ pathname: '/edit-event', params: { event: item } }}> <button onClick={this.props.edit}>edit</button></Link>
+                                        <button onClick={this.props.remove} data-val={item.id}>delete</button>
+                                    </div>
+                                </div>
                             </div>
+                            <div className="row">
+                                <div className="column">
+                                    {item.startTime} -- {item.endTime}{top}--{startTime}--{endTime}
                                 </div>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             )
         });
     }
 
     render() {
-        // const { todos, onTodoClicked } = this.props
         return (
-            <div>{this.renderEvents()}</div>
+            <div>
+                {this.timeSlot()}
+                {this.renderEvents()}
+            </div>
         )
     }
 }
 
-const mapStateToProps = (state:any) =>{
+const mapStateToProps = (state: any) => {
     return {
-        currentDate:state.events.currentDate,
-        event:state.events.events
+        currentDate: state.events.currentDate,
+        event: state.events.events
     }
 }
 
-const matchDispatchToProps = (dispatch:any)=>{
-	return bindActionCreators({edit:edit, remove:remove},dispatch)
+const matchDispatchToProps = (dispatch: any) => {
+    return bindActionCreators({ edit: edit, remove: remove }, dispatch)
 }
 export default connect(mapStateToProps, matchDispatchToProps)(CalenderEvent)
 

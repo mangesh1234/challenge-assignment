@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as moment from 'moment';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import {nextDay, previousDay, today} from '../actions/EventAction'
 
@@ -19,23 +19,7 @@ class CalenderHeader extends React.Component<IProps, any>{
        super(props)
        this.state = { todayDate:moment(this.props.currentDate).format("DD MMM YYYY")}
     }
-    
-    // getTodaysDate = () =>{
-    //     this.setState({ todayDate: this.props.currentDate})
-    // }
-
-    // getPreviousDate = () =>{
-    //     let previousDay = moment(this.state.todayDate, "DD MMM YYYY").subtract(1, 'days');
-    //     this.setState({ todayDate:moment(previousDay).format("DD MMM YYYY")})
-    // }
-
-    // getNextDate = () =>{
-    //     let nextDay = moment(this.state.todayDate, "DD MMM, YYYY").add(1, 'days');
-    //     this.setState({ todayDate:moment(nextDay).format("DD MMM YYYY")})
-    // }
-
     render() {
-		let  formData={"title":"","startTimeMin":"","startTimeHr":"","endTimeHr":"","endTimeMin":"","startTime":"","endTime":"","allDay":""};
 	   return (
 		  <div className="month">
 			 <div className="row">
@@ -50,8 +34,8 @@ class CalenderHeader extends React.Component<IProps, any>{
 				<div className="column">
 
 				    <div className="btn-group">
-					   <button onClick = {this.props.previousDay} data-val={this.props.currentDate}>Pre</button>
-					   <button onClick = {this.props.nextDay} data-val={this.props.currentDate}>Nex</button>
+					   <button onClick = {this.props.previousDay} data-val={this.props.currentDate}>Prev</button>
+					   <button onClick = {this.props.nextDay} data-val={this.props.currentDate}>Next</button>
 
 				    </div>
 				</div>
@@ -63,7 +47,7 @@ class CalenderHeader extends React.Component<IProps, any>{
 				<div className="column">
 
 				    <div className="btn-group">
-					<Link to={{pathname:'/add-event',param:{formData}}}> <button>Add</button></Link>
+					<Link to={{pathname:'/add-event'}}> <button>Add</button></Link>
 					   
 				    </div>
 

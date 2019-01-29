@@ -1,34 +1,35 @@
 import * as React from 'react';
-import * as moment from 'moment';
-import './addButton.css';
-import timeData = require('./Time.json');
+import '../AddButtonEvent/addButton.css';
 import { bindActionCreators } from 'redux';
-import { add } from '../../actions/EventAction'
+import { edit } from '../../actions/EventAction'
 import { connect } from 'react-redux';
+import { adjustDatepickerTime } from '../../Constant/Constant'
 
 interface IProps {
     currentDate: any,
-    add?(event: any): any,
+    edit?(event: any, updateID: any): any,
     history: any
 }
 
-class AddEvent extends React.Component<IProps, any>{
+class Update extends React.Component<IProps, any>{
 
     constructor(props: any) {
-        super(props)
+        super(props);
         this.state = {
-            todayDate: moment(new Date()).format("DD MMM YYYY"),
-            timeData: timeData
+            "data": props.location.params.event
         }
     }
-
+    updateState = (event: any) => {
+        this.state.data[event.target.name] = event.target.value;
+        this.setState({ "data": this.state.data })
+    }
     close = () => {
         this.props.history.push('/');
     }
-
     render() {
         const handleEvent = (event: any) => {
-            this.props.add(event)
+            let updateID = this.state.data.id
+            this.props.edit(event, updateID)
             this.props.history.push('/');
         }
         return (
@@ -39,7 +40,7 @@ class AddEvent extends React.Component<IProps, any>{
                             <label>Meeting</label>
                         </div>
                         <div className="col-75">
-                            <input className="input" name="title" placeholder="Enter Meeting" />
+                            <input className="input" name="title" defaultValue={this.state.data.title} onChange={(e) => this.updateState(e)} placeholder="Enter Meeting" />
                         </div>
                     </div>
                     <div className="row">
@@ -47,7 +48,7 @@ class AddEvent extends React.Component<IProps, any>{
                             <label>Start Time</label>
                         </div>
                         <div className="col-75">
-                            <input className="input" name="startTime" type="datetime-local" />
+                            <input className="input" name="startTime" defaultValue={adjustDatepickerTime(this.state.data.date)} onChange={(e) => this.updateState(e)} type="datetime-local" />
                         </div>
                     </div>
                     <div className="row">
@@ -55,11 +56,11 @@ class AddEvent extends React.Component<IProps, any>{
                             <label>End Time</label>
                         </div>
                         <div className="col-75">
-                            <input className="input" name="endTime" type="datetime-local" />
+                            <input className="input" name="endTime" defaultValue={adjustDatepickerTime(this.state.data.date)} onChange={(e) => this.updateState(e)} type="datetime-local" />
                         </div>
                     </div>
                     <div className="row">
-                        <input type="submit" value="Submit"/>
+                        <input type="submit" value="Submit" className="submit-button" />
                         <button className="submit-button" onClick={this.close}>Close</button>
                     </div>
                 </form>
@@ -75,6 +76,9 @@ const mapStateToProps = (state: any) => {
 }
 
 const matchDispatchToProps = (dispatch: any) => {
-    return bindActionCreators({ add: add }, dispatch)
+    return bindActionCreators({ edit: edit }, dispatch)
 }
-export default connect(mapStateToProps, matchDispatchToProps)(AddEvent)
+
+
+
+export default connect(mapStateToProps, matchDispatchToProps)(Update)

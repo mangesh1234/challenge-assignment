@@ -1,56 +1,60 @@
-import { Events } from "../models/NameEvent";
+
 import initialData = require('../calender-data.json');
 import * as moment from 'moment';
 
 let initialState = {
-    events:initialData,
+    events: initialData,
     currentDate: moment(new Date()).format("DD MMM YYYY")
 }
 
-const eventsReducer = (state:any, action: any) => {
+const eventsReducer = (state: any, action: any) => {
 
     switch (action.type) {
-        case "NEXT_DAY" :
-        let nextDate = moment(action.payload.event).format("DD MMM YYYY");
-        let nextDay = moment(action.payload.event, "DD MMM, YYYY").add('days', 1);
-        console.log('nextDay',moment(nextDay).format("DD MMM YYYY"))
-        return {...state, currentDate:moment(nextDay).format("DD MMM YYYY")}
+        case "NEXT_DAY":
 
-        case "PRIVIOUS_DAY" :
-        let previousDate = moment(action.payload.event).format("DD MMM YYYY");
-        let previousDay = moment(previousDate, "DD MMM, YYYY").subtract(1, 'days');
-        return {...state, currentDate:moment(previousDay).format("DD MMM YYYY")}
+            let nextDay = moment(action.payload.event, "DD MMM, YYYY").add('days', 1);
+            return { ...state, currentDate: moment(nextDay).format("DD MMM YYYY") }
 
-        case "TODAY" :
-        let today = moment(new Date()).format("DD MMM YYYY");
-        return {...state, currentDate:today}
+        case "PRIVIOUS_DAY":
+            let previousDate = moment(action.payload.event).format("DD MMM YYYY");
+            let previousDay = moment(previousDate, "DD MMM, YYYY").subtract(1, 'days');
+            return { ...state, currentDate: moment(previousDay).format("DD MMM YYYY") }
 
-        case "ADD" :
-        return {...state, events:[...state.events, action.payload.addEventObject]}
+        case "TODAY":
 
-        case "UPDATE" :
-        
-        return {...state, currentDate:moment(previousDay).format("DD MMM YYYY")}
+            let today = moment(new Date()).format("DD MMM YYYY");
+            return { ...state, currentDate: today }
 
-        case "DELETE" :
-      
-        return {...state, currentDate:moment(previousDay).format("DD MMM YYYY")}
+        case "ADD":
 
-        default :
+            action.payload.id = `${parseInt(state.events[state.events.length - 1].id) + 1}`;
+            return { ...state, events: [...state.events, action.payload] }
+
+        case "EDIT":
+
+            const date = moment(action.payload.startTime).format("DD MMM YYYY");
+            const startTime = moment(action.payload.startTime, "DD MMM YYYY").format('hh:mm A');
+            const endTime = moment(action.payload.endTime, "DD MMM YYYY").format('hh:mm A');
+
+            let updateArray = state.events.filter((element: any) => element.id == action.payload.id)
+            updateArray.startTime = startTime
+            updateArray.endTime = endTime
+            updateArray.date = date
+            updateArray.title = action.payload.title
+            updateArray.id = action.payload.id
+
+            state.events = state.events.filter((element: any) => element.id != updateArray.id)
+            
+            return { ...state, events: [...state.events, updateArray] }
+
+        case "REMOVE":
+
+            let newArray = state.events.filter((ele: any) => ele.id != parseInt(action.payload))
+
+            return { ...state, events: newArray }
+
+        default:
             return initialState;
-
-        // case ADDEVENT:
-        //     newState = [
-        //         // ...state,
-        //         action.payload.task, 
-        //     ];
-        //     console.log("reducer")
-        //     return newState;
-        // case DELETE_TASK:
-        //     // return state.filter(task => task.id !== action.payload.id);
-        // return state;
-        // default:
-        //     return initialState;
     }
 }
 

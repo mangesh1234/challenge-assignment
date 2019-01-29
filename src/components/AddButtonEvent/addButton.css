@@ -61,10 +61,10 @@ input[type=text], select, textarea {
   }
   
   .submit-button {
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    float: right; /* Float the buttons side by side */
+    background-color: #4CAF50; 
+    border: 1px solid green; 
+    color: white;
+    padding: 10px 24px; 
+    cursor: pointer; 
+    float: right;
   }
